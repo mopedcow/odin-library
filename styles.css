@@ -44,9 +44,7 @@ body {
     width: 40px;
     padding: 8px 0;
     display: flex;
-    justify-content: center;
-}
-.title-vert {
+    align-items: center;
     writing-mode: sideways-rl;
 }
 .cover {
