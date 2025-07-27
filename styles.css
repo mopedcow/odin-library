@@ -28,7 +28,8 @@ body {
 
     padding: 18px;
     display: grid;
-    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+    gap: 8px;
 }
 .book-container {
     background-color: white;
@@ -67,4 +68,7 @@ button {
 }
 fieldset {
     border: 0;
+}
+#book-add-new {
+    grid-area: -2 / -2;
 }

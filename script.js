@@ -54,3 +54,19 @@ book4 = addBookToLibrary('The Complete Tales of Beatrix Potter', 'Beatrix', 'Pot
 book5 = addBookToLibrary('The Poky Little Puppy', 'Janette', 'Sebring Lowrey', 24, 'Unread');
 
 generateBooks();
+
+const addBookButton = document.getElementById('addBook');
+
+addBookButton.addEventListener('click', preventSubmit, false);
+
+function preventSubmit(event) {
+    console.log('submit blocked!!!');
+    event.preventDefault();
+}
+
+addBookButton.addEventListener('click', () => {
+    const title = document.getElementById('title');
+    const authorFirstName = document.getElementById('first-name');
+    const authorSurname = document.getElementById('surname');
+});
+
