@@ -21,10 +21,10 @@ Book.prototype.printInfo = function() {
     return `${this.title} by ${this.authorFirstName} ${this.authorSurname}, ${this.pageCount} pages; ${this.readStatus}. (ID: ${this.ID})`;
 }
 
-book1 = addBookToLibrary('Villette', 'Charlotte', 'Brontë', 235, 'Read');
-book2 = addBookToLibrary('Agnes Grey', 'Anne', 'Brontë', 190, 'Unread');
-book3 = addBookToLibrary('Norwegian Wood', 'Haruki', 'Murakami', 205, 'Reading');
-book4 = addBookToLibrary('Our Wives Under the Sea', 'Julia', 'Armfield', 180, 'Read');
-book5 = addBookToLibrary('World Within the World', 'Julia', 'Gfrörer', 150, 'Unread');
+book1 = addBookToLibrary('James and the Giant Peach', 'Roald', 'Dahl', 288, 'Read');
+book2 = addBookToLibrary('Mr Birthday', 'Roger', 'Hargreaves', 32, 'Unread');
+book3 = addBookToLibrary('How the Grinch Stole Christmas', 'Dr', 'Seuss', 64, 'Reading');
+book4 = addBookToLibrary('The Complete Tales of Beatrix Potter', 'Beatrix', 'Potter', 409, 'Read');
+book5 = addBookToLibrary('The Poky Little Puppy', 'Janette', 'Sebring Lowrey', 24, 'Unread');
 
 console.log(library[1].printInfo());

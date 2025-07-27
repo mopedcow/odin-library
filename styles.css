@@ -3,6 +3,41 @@
     padding: 0;
     box-sizing: border-box;
 }
+/*vars*/
 body {
-    background: gold;
+    display: flex;
+    flex-direction: column;
+}
+.header-container {
+    background: turquoise; /* change */
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.library-container {
+    border: 2px dotted orange; /*delete*/
+
+    padding: 18px;
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+}
+.book-container {
+    background-color: gold; /*var: book-cover-color (random?)*/
+    width: 300px;
+    height: 380px;
+    display: flex;
+}
+.spine {
+    background: lime; /*var: book-spine (random?) */
+    width: 40px;
+    padding: 8px 0;
+    display: flex;
+    justify-content: center;
+}
+.title-vert {
+    writing-mode: sideways-rl;
+}
+.cover {
+    padding: 8px;
 }
