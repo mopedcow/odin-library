@@ -3,7 +3,15 @@
     padding: 0;
     box-sizing: border-box;
 }
-/*vars*/
+:root {
+    --book-spine-color-1: rgb(0, 232, 208);
+    --book-spine-color-2: rgb(255, 98, 81);
+    --book-spine-color-3: rgb(255, 247, 0);
+
+    --book-title-color-1: rgb(0, 161, 161);
+    --book-title-color-2: rgb(210, 65, 49);
+    --book-title-color-3: rgb(255, 191, 0);
+}
 body {
     display: flex;
     flex-direction: column;
@@ -16,20 +24,23 @@ body {
     align-items: center;
 }
 .library-container {
-    border: 2px dotted orange; /*delete*/
+    background: gold;
 
     padding: 18px;
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 }
 .book-container {
-    background-color: gold; /*var: book-cover-color (random?)*/
+    background-color: white;
+    border-radius: 5px;
+    border: 3px solid var(--book-spine-color-2);
+    overflow: hidden;
     width: 300px;
     height: 380px;
     display: flex;
 }
 .spine {
-    background: lime; /*var: book-spine (random?) */
+    background: var(--book-spine-color-2);
     width: 40px;
     padding: 8px 0;
     display: flex;
@@ -40,4 +51,22 @@ body {
 }
 .cover {
     padding: 8px;
+    width: 100%;
+}
+label,
+input[type="input"],
+fieldset,
+legend,
+button {
+    font-family: inherit;
+    font-size: 100%;
+    box-sizing: border-box;
+    width: 100%;
+    display: block;
+}
+.read-select {
+    display: block;
+}
+fieldset {
+    border: 0;
 }
