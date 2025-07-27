@@ -10,14 +10,21 @@ function Book(title, authorFirstName, authorSurname, pageCount, readStatus) {
     this.pageCount = pageCount;
     this.readStatus = readStatus;
     this.ID = crypto.randomUUID();
-    this.printInfo = function() {
-        return `${title} by ${authorFirstName} ${authorSurname}, ${pageCount} pages; ${readStatus}. (ID: ${this.ID})`;
-    };
 }
 
-function addBookToLibrary(title, author, pageCount, readStatus) {
-    const book = new Book(title, author, pageCount, readStatus);
-    return book;
+function addBookToLibrary(title, authorFirstName, authorSurname, pageCount, readStatus) {
+    const book = new Book(title, authorFirstName, authorSurname, pageCount, readStatus);
+    library.push(book);
 }
 
-book1 = addBookToLibrary('Villette', 'Charlotte', 'Brontë', 200, 'Read');
+Book.prototype.printInfo = function() {
+    return `${this.title} by ${this.authorFirstName} ${this.authorSurname}, ${this.pageCount} pages; ${this.readStatus}. (ID: ${this.ID})`;
+}
+
+book1 = addBookToLibrary('Villette', 'Charlotte', 'Brontë', 235, 'Read');
+book2 = addBookToLibrary('Agnes Grey', 'Anne', 'Brontë', 190, 'Unread');
+book3 = addBookToLibrary('Norwegian Wood', 'Haruki', 'Murakami', 205, 'Reading');
+book4 = addBookToLibrary('Our Wives Under the Sea', 'Julia', 'Armfield', 180, 'Read');
+book5 = addBookToLibrary('World Within the World', 'Julia', 'Gfrörer', 150, 'Unread');
+
+console.log(library[1].printInfo());
