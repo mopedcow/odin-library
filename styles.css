@@ -23,6 +23,14 @@ body {
     justify-content: center;
     align-items: center;
 }
+.header-title {
+    color: whitesmoke;
+}
+.open-dialog-button {
+    position: absolute;
+    right: 16px;
+    width: 180px;
+}
 .library-container {
     background: gold;
 
@@ -31,7 +39,8 @@ body {
     grid-template: repeat(2, 1fr) / repeat(3, 1fr);
     gap: 8px;
 }
-.book-container {
+.book-container,
+.add-book-container {
     background-color: white;
     border-radius: 5px;
     border: 3px solid var(--book-spine-color-2);

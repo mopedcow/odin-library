@@ -8,12 +8,14 @@
 </head>
 <body>
     <div class="header-container">
-        <h1>Little Mac's Library</h1>
+        <h1 class="header-title">Little Mac's Library</h1>
+        <button id="open-dialog" class="open-dialog-button">Add New Book</button>
     </div>
     <div class="library-container">
-        
-<!-- Add New Card card -->
-        <div id ="book-add-new" class="book-container">
+    </div>
+    <dialog>
+        <!-- Add New Card card -->
+        <div id ="book-add-new" class="add-book-container">
             <div class="spine">
                 <h2 class="title-spine">Add New Book</h2>
             </div>
@@ -39,13 +41,13 @@
                             <span class="read-select"><input type="radio" id="unread" name="read-status" value="unread">No, I've not read it</span>
                         </fieldset>
 
-                        <button type="submit" id="addBook">Add Book</button>
+                        <button type="submit" id="submitBook">Add Book</button>
                     </form>
                 </div>
             </div>
         </div>
 <!-- -->
-    </div>
+    </dialog>
     <script src="script.js"></script>
 </body>
 </html>

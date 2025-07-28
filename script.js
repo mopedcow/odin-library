@@ -1,4 +1,5 @@
 const library = [];
+const container = document.querySelector(".library-container");
 
 function Book(title, authorFirstName, authorSurname, pageCount, readStatus) {
     if (!new.target) {
@@ -17,13 +18,7 @@ function addBookToLibrary(title, authorFirstName, authorSurname, pageCount, read
     library.push(book);
 }
 
-Book.prototype.printInfo = function() {
-    return `${this.title} by ${this.authorFirstName} ${this.authorSurname}, ${this.pageCount} pages; ${this.readStatus}. (ID: ${this.ID})`;
-}
-
-function generateBooks() {
-    const container = document.querySelector(".library-container");
-
+function generateLibrary() {
     library.forEach (book => {
         const bookCard = document.createElement('div');
         bookCard.classList.add('book-container');
@@ -47,26 +42,42 @@ function generateBooks() {
     })
 }
 
-book1 = addBookToLibrary('James and the Giant Peach', 'Roald', 'Dahl', 288, 'Read');
-book2 = addBookToLibrary('Mr Birthday', 'Roger', 'Hargreaves', 32, 'Unread');
-book3 = addBookToLibrary('How the Grinch Stole Christmas', 'Dr', 'Seuss', 64, 'Reading');
-book4 = addBookToLibrary('The Complete Tales of Beatrix Potter', 'Beatrix', 'Potter', 409, 'Read');
-book5 = addBookToLibrary('The Poky Little Puppy', 'Janette', 'Sebring Lowrey', 24, 'Unread');
+function wipeLibrary() {
+    console.log('hello');
+    const library = document.querySelectorAll('.book-container');
+    console.log(library);
+    for (i = library.length-1; i >= 0; i--) {
+        library[i].remove();
+    }
+}
 
-generateBooks();
+const submitBookButton = document.getElementById('submitBook');
 
-const addBookButton = document.getElementById('addBook');
-
-addBookButton.addEventListener('click', preventSubmit, false);
+submitBookButton.addEventListener('click', preventSubmit, false);
 
 function preventSubmit(event) {
-    console.log('submit blocked!!!');
     event.preventDefault();
 }
 
-addBookButton.addEventListener('click', () => {
+submitBookButton.addEventListener('click', () => {
     const title = document.getElementById('title');
     const authorFirstName = document.getElementById('first-name');
     const authorSurname = document.getElementById('surname');
+    const pageCount = document.getElementById('page-count');
+
+    const book = addBookToLibrary(title.value, authorFirstName.value, authorSurname.value, pageCount.value, 'unread');
+
+    wipeLibrary();
+    generateLibrary();
 });
 
+const removeBookButton = document.getElementsByClassName('.delete-book');
+console.log(removeBookButton);
+
+addBookToLibrary('James and the Giant Peach', 'Roald', 'Dahl', 288, 'Read');
+addBookToLibrary('Mr Birthday', 'Roger', 'Hargreaves', 32, 'Unread');
+addBookToLibrary('How the Grinch Stole Christmas', 'Dr', 'Seuss', 64, 'Reading');
+addBookToLibrary('The Complete Tales of Beatrix Potter', 'Beatrix', 'Potter', 409, 'Read');
+addBookToLibrary('The Poky Little Puppy', 'Janette', 'Sebring Lowrey', 24, 'Unread');
+
+generateLibrary();
