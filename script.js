@@ -71,8 +71,16 @@ submitBookButton.addEventListener('click', () => {
     generateLibrary();
 });
 
-const removeBookButton = document.getElementsByClassName('.delete-book');
-console.log(removeBookButton);
+const dialog = document.querySelector('dialog');
+const openDialogButton = document.querySelector('.open-dialog-button');
+const closeDialogButton = document.getElementById('close-dialog-button');
+
+openDialogButton.addEventListener('click', () => {
+    dialog.showModal();
+})
+closeDialogButton.addEventListener('click', () => {
+    dialog.close();
+})
 
 addBookToLibrary('James and the Giant Peach', 'Roald', 'Dahl', 288, 'Read');
 addBookToLibrary('Mr Birthday', 'Roger', 'Hargreaves', 32, 'Unread');
