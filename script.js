@@ -34,28 +34,51 @@ function generateLibrary() {
                     <p class="page-count">${book.pageCount} pages</p>
                     <p class="read-status">${book.readStatus}</p>
                     <p class="ID">ID: ${book.ID}</p>
-                    <button class="delete-book">Delete</button>
+                    <button class="delete-book" id="${book.ID}">Delete</button>
                 </div>
             </div>
             `;
         container.appendChild(bookCard);
     })
+
+    const deleteBookButton = document.querySelectorAll('.delete-book');
+    for (i = 0; i < deleteBookButton.length; i++) {
+        deleteBookButton[i].addEventListener('click', (e) => {
+            console.log('1 collect id: ' + e.target.id);
+            deleteBook(e.target.id);
+        })
+    }
 }
 
 function wipeLibrary() {
-    console.log('hello');
     const library = document.querySelectorAll('.book-container');
-    console.log(library);
     for (i = library.length-1; i >= 0; i--) {
         library[i].remove();
     }
+}
+
+function deleteBook(bookId) {
+    const id = bookId;
+    console.log("2 search array for id: " + id);
+
+    for (i = library.length-1; i >= 0; i--) {
+        book = library[i];
+        console.log(library[i].ID);
+        if (id === book.ID) {
+            console.log('match found');
+            library.splice(i, 1);
+        }
+    }
+
+    wipeLibrary();
+    generateLibrary();
 }
 
 const submitBookButton = document.getElementById('submitBook');
 
 submitBookButton.addEventListener('click', preventSubmit, false);
 
-function preventSubmit(event) {
+function preventSubmit(event) { /*combine w below function? */
     event.preventDefault();
 }
 
@@ -89,3 +112,4 @@ addBookToLibrary('The Complete Tales of Beatrix Potter', 'Beatrix', 'Potter', 40
 addBookToLibrary('The Poky Little Puppy', 'Janette', 'Sebring Lowrey', 24, 'Unread');
 
 generateLibrary();
+
