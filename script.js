@@ -1,7 +1,7 @@
 const library = [];
 const container = document.querySelector(".library-container");
 
-function Book(title, authorFirstName, authorSurname, pageCount, readStatus) {
+function Book(title, authorFirstName, authorSurname, pageCount, isRead) {
     if (!new.target) {
         throw Error("Call constructor with 'new'.");
     }
@@ -9,12 +9,12 @@ function Book(title, authorFirstName, authorSurname, pageCount, readStatus) {
     this.authorSurname = authorSurname;
     this.authorFirstName = authorFirstName;
     this.pageCount = pageCount;
-    this.readStatus = readStatus;
+    this.isRead = isRead;
     this.ID = crypto.randomUUID();
 }
 
-function addBookToLibrary(title, authorFirstName, authorSurname, pageCount, readStatus) {
-    const book = new Book(title, authorFirstName, authorSurname, pageCount, readStatus);
+function addBookToLibrary(title, authorFirstName, authorSurname, pageCount, isRead) {
+    const book = new Book(title, authorFirstName, authorSurname, pageCount, isRead);
     library.push(book);
 }
 
@@ -22,6 +22,8 @@ function generateLibrary() {
     library.forEach (book => {
         const bookCard = document.createElement('div');
         bookCard.classList.add('book-container');
+
+        const readStatus = book.isRead ? "Read" : "Unread";
 
         bookCard.innerHTML = `
             <div class="spine">
@@ -32,20 +34,34 @@ function generateLibrary() {
                     <h2 class="title-cover">${book.title}</h2>
                     <h3 class="author">${book.authorFirstName} ${book.authorSurname}</h3>
                     <p class="page-count">${book.pageCount} pages</p>
-                    <p class="read-status">${book.readStatus}</p>
+                    <p class="read-status"><input type="checkbox" class="toggle-read" id="${book.ID}">${readStatus}</p>
                     <p class="ID">ID: ${book.ID}</p>
                     <button class="delete-book" id="${book.ID}">Delete</button>
                 </div>
             </div>
             `;
+
         container.appendChild(bookCard);
     })
+
+    const readStatusTag = document.querySelectorAll('.read-status');
+    const checkboxes = document.querySelectorAll('.toggle-read');
+    for (i = 0; i < readStatusTag.length; i++) {
+        console.log(readStatusTag[i].textContent);
+        console.log(checkboxes[i]);
+    }
 
     const deleteBookButton = document.querySelectorAll('.delete-book');
     for (i = 0; i < deleteBookButton.length; i++) {
         deleteBookButton[i].addEventListener('click', (e) => {
-            console.log('1 collect id: ' + e.target.id);
             deleteBook(e.target.id);
+        })
+    }
+
+    const readStatusCheckbox = document.querySelectorAll('.toggle-read');
+    for (i = 0; i < readStatusCheckbox.length; i++) {
+        readStatusCheckbox[i].addEventListener('click', (e) => {
+            toggleReadStatus(e.target.id);
         })
     }
 }
@@ -57,21 +73,39 @@ function wipeLibrary() {
     }
 }
 
+function resetLibrary() {
+    wipeLibrary();
+    generateLibrary();
+}
+
 function deleteBook(bookId) {
     const id = bookId;
-    console.log("2 search array for id: " + id);
 
     for (i = library.length-1; i >= 0; i--) {
         book = library[i];
-        console.log(library[i].ID);
         if (id === book.ID) {
-            console.log('match found');
             library.splice(i, 1);
         }
     }
 
-    wipeLibrary();
-    generateLibrary();
+    resetLibrary();
+}
+
+Book.prototype.toggleReadStatus = function() {
+    this.isRead = !this.isRead ? true : false;
+}
+
+function toggleReadStatus(bookId) {
+    const id = bookId;
+
+    for (i = library.length-1; i >= 0; i--) {
+        book = library[i];
+        if (id === book.ID) {
+            library[i].toggleReadStatus();
+        }
+    }
+
+    resetLibrary();
 }
 
 const submitBookButton = document.getElementById('submitBook');
@@ -94,6 +128,8 @@ submitBookButton.addEventListener('click', () => {
     generateLibrary();
 });
 
+
+
 const dialog = document.querySelector('dialog');
 const openDialogButton = document.querySelector('.open-dialog-button');
 const closeDialogButton = document.getElementById('close-dialog-button');
@@ -105,11 +141,11 @@ closeDialogButton.addEventListener('click', () => {
     dialog.close();
 })
 
-addBookToLibrary('James and the Giant Peach', 'Roald', 'Dahl', 288, 'Read');
-addBookToLibrary('Mr Birthday', 'Roger', 'Hargreaves', 32, 'Unread');
-addBookToLibrary('How the Grinch Stole Christmas', 'Dr', 'Seuss', 64, 'Reading');
-addBookToLibrary('The Complete Tales of Beatrix Potter', 'Beatrix', 'Potter', 409, 'Read');
-addBookToLibrary('The Poky Little Puppy', 'Janette', 'Sebring Lowrey', 24, 'Unread');
+addBookToLibrary('James and the Giant Peach', 'Roald', 'Dahl', 288, false);
+addBookToLibrary('Mr Birthday', 'Roger', 'Hargreaves', 32, true);
+addBookToLibrary('How the Grinch Stole Christmas', 'Dr', 'Seuss', 64, true);
+addBookToLibrary('The Complete Tales of Beatrix Potter', 'Beatrix', 'Potter', 409, true);
+addBookToLibrary('The Poky Little Puppy', 'Janette', 'Sebring Lowrey', 24, false);
 
 generateLibrary();
 
