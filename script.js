@@ -1,5 +1,6 @@
 const library = [];
 const container = document.querySelector(".library-container");
+const submitBookButton = document.getElementById('submitBook');
 
 function Book(title, authorFirstName, authorSurname, pageCount, isRead) {
     if (!new.target) {
@@ -13,9 +14,48 @@ function Book(title, authorFirstName, authorSurname, pageCount, isRead) {
     this.ID = crypto.randomUUID();
 }
 
+Book.prototype.toggleReadStatus = function() {
+    this.isRead = !this.isRead ? true : false;
+}
+
 function addBookToLibrary(title, authorFirstName, authorSurname, pageCount, isRead) {
     const book = new Book(title, authorFirstName, authorSurname, pageCount, isRead);
     library.push(book);
+}
+
+function deleteBook(bookId) {
+    const id = bookId;
+
+    for (i = library.length-1; i >= 0; i--) {
+        book = library[i];
+        if (id === book.ID) {
+            library.splice(i, 1);
+        }
+    }
+    resetLibrary();
+}
+
+function toggleReadStatus(bookId) {
+    const id = bookId;
+    for (i = library.length-1; i >= 0; i--) {
+        book = library[i];
+        if (id === book.ID) {
+            library[i].toggleReadStatus();
+        }
+    }
+    resetLibrary();
+}
+
+function wipeLibrary() {
+    const library = document.querySelectorAll('.book-container');
+    for (i = library.length-1; i >= 0; i--) {
+        library[i].remove();
+    }
+}
+
+function resetLibrary() {
+    wipeLibrary();
+    generateLibrary();
 }
 
 function generateLibrary() {
@@ -34,7 +74,7 @@ function generateLibrary() {
                     <h2 class="title-cover">${book.title}</h2>
                     <h3 class="author">${book.authorFirstName} ${book.authorSurname}</h3>
                     <p class="page-count">${book.pageCount} pages</p>
-                    <p class="read-status"><input type="checkbox" class="toggle-read" id="${book.ID}">${readStatus}</p>
+                    <p class="read-status"><button class="toggle-read" id="${book.ID}">${readStatus}</button></p>
                     <p class="ID">ID: ${book.ID}</p>
                     <button class="delete-book" id="${book.ID}">Delete</button>
                 </div>
@@ -43,92 +83,32 @@ function generateLibrary() {
 
         container.appendChild(bookCard);
     })
-
-    const readStatusTag = document.querySelectorAll('.read-status');
-    const checkboxes = document.querySelectorAll('.toggle-read');
-    for (i = 0; i < readStatusTag.length; i++) {
-        console.log(readStatusTag[i].textContent);
-        console.log(checkboxes[i]);
+        const readStatusButton = document.querySelectorAll('.toggle-read');
+    for (i = 0; i < readStatusButton.length; i++) {
+        readStatusButton[i].addEventListener('click', (e) => {
+            toggleReadStatus(e.target.id);
+        })
     }
-
     const deleteBookButton = document.querySelectorAll('.delete-book');
     for (i = 0; i < deleteBookButton.length; i++) {
         deleteBookButton[i].addEventListener('click', (e) => {
             deleteBook(e.target.id);
         })
     }
-
-    const readStatusCheckbox = document.querySelectorAll('.toggle-read');
-    for (i = 0; i < readStatusCheckbox.length; i++) {
-        readStatusCheckbox[i].addEventListener('click', (e) => {
-            toggleReadStatus(e.target.id);
-        })
-    }
 }
 
-function wipeLibrary() {
-    const library = document.querySelectorAll('.book-container');
-    for (i = library.length-1; i >= 0; i--) {
-        library[i].remove();
-    }
-}
-
-function resetLibrary() {
-    wipeLibrary();
-    generateLibrary();
-}
-
-function deleteBook(bookId) {
-    const id = bookId;
-
-    for (i = library.length-1; i >= 0; i--) {
-        book = library[i];
-        if (id === book.ID) {
-            library.splice(i, 1);
-        }
-    }
-
-    resetLibrary();
-}
-
-Book.prototype.toggleReadStatus = function() {
-    this.isRead = !this.isRead ? true : false;
-}
-
-function toggleReadStatus(bookId) {
-    const id = bookId;
-
-    for (i = library.length-1; i >= 0; i--) {
-        book = library[i];
-        if (id === book.ID) {
-            library[i].toggleReadStatus();
-        }
-    }
-
-    resetLibrary();
-}
-
-const submitBookButton = document.getElementById('submitBook');
-
-submitBookButton.addEventListener('click', preventSubmit, false);
-
-function preventSubmit(event) { /*combine w below function? */
+submitBookButton.addEventListener('click', (event) => {
     event.preventDefault();
-}
-
-submitBookButton.addEventListener('click', () => {
     const title = document.getElementById('title');
     const authorFirstName = document.getElementById('first-name');
     const authorSurname = document.getElementById('surname');
     const pageCount = document.getElementById('page-count');
 
-    const book = addBookToLibrary(title.value, authorFirstName.value, authorSurname.value, pageCount.value, 'unread');
+    addBookToLibrary(title.value, authorFirstName.value, authorSurname.value, pageCount.value, 'unread');
 
     wipeLibrary();
     generateLibrary();
 });
-
-
 
 const dialog = document.querySelector('dialog');
 const openDialogButton = document.querySelector('.open-dialog-button');
