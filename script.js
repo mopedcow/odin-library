@@ -72,11 +72,10 @@ function generateLibrary() {
             <div class="cover">
                 <div class="book-info-container">
                     <h2 class="title-cover">${book.title}</h2>
-                    <h3 class="author">${book.authorFirstName} ${book.authorSurname}</h3>
+                    <h3 class="author">By ${book.authorFirstName} ${book.authorSurname}</h3>
                     <p class="page-count">${book.pageCount} pages</p>
-                    <p class="read-status" id="${book.ID}"><button class="toggle-read ${readStatus}" id="${book.ID}">${readStatus}</button></p>
-                    <p class="ID">ID: ${book.ID}</p>
-                    <button class="delete-book" id="${book.ID}">Delete</button>
+                    <p class="read-status" id="${book.ID}"><button class="toggle-read ${readStatus}" id="${book.ID}">I've Read this book!</button></p>
+                    <button class="delete-book" id="${book.ID}">Remove From Library</button>
                 </div>
             </div>
             `;
