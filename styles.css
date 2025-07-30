@@ -13,30 +13,38 @@
     --book-title-color-3: rgb(255, 191, 0);
 }
 body {
+    background: gold;
     display: flex;
     flex-direction: column;
 }
 .header-container {
+    position: relative;
     background: turquoise; /* change */
-    height: 80px;
+    height: 200px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 12px;
 }
 .header-title {
     color: whitesmoke;
 }
+.header-image {
+    height: 60%;
+    border-radius: 25%;
+}
 .open-dialog-button {
     position: absolute;
     right: 16px;
+    top: 16px;
     width: 180px;
 }
 .library-container {
-    background: gold;
-
     padding: 18px;
     display: grid;
-    grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, min(320px));
+    justify-content: center;
     gap: 8px;
 }
 .book-container,
@@ -78,10 +86,19 @@ button {
 fieldset {
     border: 0;
 }
-#book-add-new {
-    grid-area: -2 / -2;
+#add-book-modal {
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    margin:0;
 }
 .close-button-container {
     position: absolute;
     right: 16px;
+}
+.Read {
+    background-color: lightskyblue;
+}
+.Unread {
+    background-color: grey;
 }

@@ -74,7 +74,7 @@ function generateLibrary() {
                     <h2 class="title-cover">${book.title}</h2>
                     <h3 class="author">${book.authorFirstName} ${book.authorSurname}</h3>
                     <p class="page-count">${book.pageCount} pages</p>
-                    <p class="read-status"><button class="toggle-read" id="${book.ID}">${readStatus}</button></p>
+                    <p class="read-status" id="${book.ID}"><button class="toggle-read ${readStatus}" id="${book.ID}">${readStatus}</button></p>
                     <p class="ID">ID: ${book.ID}</p>
                     <button class="delete-book" id="${book.ID}">Delete</button>
                 </div>
@@ -83,10 +83,11 @@ function generateLibrary() {
 
         container.appendChild(bookCard);
     })
-        const readStatusButton = document.querySelectorAll('.toggle-read');
+
+    const readStatusButton = document.querySelectorAll('.toggle-read');
     for (i = 0; i < readStatusButton.length; i++) {
         readStatusButton[i].addEventListener('click', (e) => {
-            toggleReadStatus(e.target.id);
+            toggleReadStatus(e.target.id);     
         })
     }
     const deleteBookButton = document.querySelectorAll('.delete-book');
@@ -108,6 +109,7 @@ submitBookButton.addEventListener('click', (event) => {
 
     wipeLibrary();
     generateLibrary();
+    dialog.close();
 });
 
 const dialog = document.querySelector('dialog');
