@@ -21,7 +21,9 @@
             </div>
             <div class="cover">
                 <div class="close-button-container">
-                    <button id="close-dialog-button">x</button>
+                    <button id="close-dialog-button">
+                        <img src="images/x.svg">
+                    </button>
                 </div>
                 <div class="book-info-container">
                     <h2 class="title-cover">Add New Book</h2>
@@ -35,13 +37,24 @@
                         <label for="surname">Author's surname:</label>
                         <input type="input" id="surname" name="surname">
 
-                        <label for="page-count">Number of pages:</label>
-                        <input type="input" id="page-count" name="page-count">
+                        <div class="page-count-container">
+                            <label for="page-count">No. of pages:</label>
+                            <input type="tel" id="page-count" name="page-count">
+                        </div>
 
                         <fieldset>
                             <legend>Have you read this book?</legend>
-                            <span class="read-select"><input type="radio" id="read" name="read-status" value="read"><label for="read">Yes, I've read it</label></span>
-                            <span class="read-select"><input type="radio" id="unread" name="read-status" value="unread"><label for="unread">No, I've not read it</label></span>
+                            <ul>
+                                <li class="read-select">
+                                    <input type="radio" id="read" name="toggle-read" value="true">
+                                    <label for="read">Yes, I've read it</label>
+                                </li>
+
+                                <li class="read-select">
+                                    <input type="radio" id="unread" name="toggle-read" value="false">
+                                    <label for="unread">No, I've not read it</label>
+                                </li>
+                            </ul>
                         </fieldset>
 
                         <button type="submit" id="submitBook" formmethod="dialog">Add Book</button>

@@ -62,7 +62,6 @@ function generateLibrary() {
     library.forEach (book => {
         const bookCard = document.createElement('div');
         bookCard.classList.add('book-container');
-
         const readStatus = book.isRead ? "Read" : "Unread";
 
         bookCard.innerHTML = `
@@ -103,8 +102,9 @@ submitBookButton.addEventListener('click', (event) => {
     const authorFirstName = document.getElementById('first-name');
     const authorSurname = document.getElementById('surname');
     const pageCount = document.getElementById('page-count');
+    const isRead = document.getElementById('toggle-read').checked;
 
-    addBookToLibrary(title.value, authorFirstName.value, authorSurname.value, pageCount.value, 'unread');
+    addBookToLibrary(title.value, authorFirstName.value, authorSurname.value, pageCount.value, isRead);
 
     wipeLibrary();
     generateLibrary();
