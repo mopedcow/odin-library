@@ -7,7 +7,8 @@ https://www.theodinproject.com/lessons/node-path-javascript-library
 -Utilizing skills learned from all previus Javascript lessons
 
 Steps complete! Skills used:
--Using objects and prototypes
--CSS grid, flexbox
--Utilizing DOM
--CSS variables
+-Javascript: objects and prototypes
+-Javascript: DOM
+-CSS: grid, flexbox
+-CSS: variables
+-CSS: styling forms
