@@ -31,8 +31,6 @@ body {
 }
 label,
 input,
-fieldset,
-legend,
 button {
     font-family: inherit;
     font-size: 100%;
@@ -92,7 +90,7 @@ button {
     border: 3px solid var(--book-spine-color-2);
     overflow: hidden;
     width: 340px;
-    height: 400px;
+    height: 420px;
     display: flex;
     position: relative;
 }
@@ -219,4 +217,14 @@ dialog {
 }
 .toggle-read {
     width: 100%;
+}
+input{
+    border: 2px solid var(--inactive-2);
+    border-radius: 5px;
+    padding: 4px;
+}
+input:focus {
+    outline: none;
+    border-color: var(--header-color);
+    
 }
