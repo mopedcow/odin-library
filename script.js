@@ -1,6 +1,6 @@
 const library = [];
 const container = document.querySelector(".library-container");
-const submitBookButton = document.getElementById('submitBook');
+const submitBookButton = document.getElementById('submit-book');
 
 function Book(title, authorFirstName, authorSurname, pageCount, isRead) {
     if (!new.target) {
@@ -102,7 +102,7 @@ submitBookButton.addEventListener('click', (event) => {
     const authorFirstName = document.getElementById('first-name');
     const authorSurname = document.getElementById('surname');
     const pageCount = document.getElementById('page-count');
-    const isRead = document.getElementById('toggle-read').checked;
+    const isRead = document.getElementById('read-check').checked;
 
     addBookToLibrary(title.value, authorFirstName.value, authorSurname.value, pageCount.value, isRead);
 

@@ -65,7 +65,18 @@ button {
     position: absolute;
     right: 16px;
     top: 16px;
-    width: 180px;
+    padding-left: 36px;
+}
+.open-dialog-button:active {
+    top: 18px;
+    right: 14px;
+}
+.open-dialog-button::before,
+.submit-book::before {
+    content: url('images/plus.svg');
+    position: absolute;
+    top: 3px;
+    left: 6px;
 }
 .library-container {
     padding: 18px;
@@ -107,15 +118,22 @@ h2.title-cover {
     line-height: 1.9rem;
     margin-bottom: 4px;
 }
+.book-info-container .title-cover {
+    margin-bottom: 16px;
+}
 .author {
     margin-bottom: 8px;
 }
-.read-status {
-    text-align: center;
+.read-status,
+.submit-book-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
 }
-.toggle-read {
+.submit-book,
+.toggle-read
+ {
     position: relative;
-    margin: 18px 0 8px;
     padding-left: 36px;
 }
 .toggle-read::before{
@@ -123,11 +141,15 @@ h2.title-cover {
     left: 4px;
     top: 4px;
 }
+.submit-book:active,
+.toggle-read:active {
+    top: 2px;
+    left: 2px;
+}
+
 .toggle-read:active {
     background-color: var(--header-color-light);
     border-color: var(--header-color);
-    top: 2px;
-    left: 2px;
 }
 .Read {
     background-color: var(--header-color);
@@ -152,6 +174,7 @@ h2.title-cover {
     bottom: 8px;
     right: 2px;
     font-size: 0.9rem;
+    color: var(--inactive-2);
 }
 dialog::backdrop {
     background-color: rgba(0,0,0,0.75);
@@ -161,7 +184,8 @@ dialog {
     border: 0;
     margin: 15% auto;
 }
-.open-dialog-button {
+.open-dialog-button,
+.submit-book {
     background: var(--body-color-light);
     border-color: var(--body-color);
 }
@@ -179,28 +203,20 @@ dialog {
     background-color: var(--book-bg-color);
     border: 0;
 }
-fieldset {
-    border: 0;
+.title input,
+.first-name input,
+.surname input {
+    width: 100%;
 }
-.book-info-container input[type="input"],
-.book-info-container label {
+.page-count input{
+    width: 25%;
     display: block;
 }
-.page-count-container {
-    display: grid;
-    grid-template-columns: auto 25%;
-    justify-content: start;
-    gap: 6px;
+.read-check {
+    display: flex;
+    margin-top: 6px;
+    gap: 4px;
 }
-.book-info-container input[type="tel"],
-.book-info-container label[for="page-count"] {
-    display: inline;
-}
-.read-select label {
-    display: inline;
-}
-ul, li {
-    list-style: none;
-    line-height: 1.2;
-    display: inline-block;
+.toggle-read {
+    width: 100%;
 }
